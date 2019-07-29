@@ -6,8 +6,6 @@ const router = express.Router();
 
 router.post('/register', middleware.checkBodyForRegister, controller.register);
 
-router.post('/login', (req, res) => {
-  res.json('Login');
-});
+router.post('/login', middleware.checkBodyForLogin, controller.login);
 
 module.exports = router;
