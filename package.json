@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "jest"
+    "test": "NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   "homepage": "https://github.com/buildweek-foodiefun/backend#readme",
   "devDependencies": {
     "eslint": "^6.1.0",
-    "nodemon": "^1.19.1"
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -30,5 +32,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.1",
     "sqlite3": "^4.0.9"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
