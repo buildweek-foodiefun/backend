@@ -71,8 +71,8 @@ To test the repository:
 
 #### Response
 
-##### 200 (OK)
->If you successfully register a user the endpoint will return an HTTP response with a status code `200` and a body as below.
+##### 201 (Created)
+>If you successfully register a user the endpoint will return an HTTP response with a status code `201` and a body as below.
 ```
 {
     "message": "Created user",
