@@ -3,7 +3,7 @@ This repository holds all backend files for the FoodieFun application. You can f
 
 ## API URL
 
-## Installation 
+## Installation
 Fork/Clone the repository. In the same directory as the package.json, run:
 
 ```npm install```
@@ -147,7 +147,7 @@ To test the repository:
 }
 ```
 ##### 401 (Not Found)
->If you send in an email address that does not match one in the database, the endpoint will return an HTTP response with a status code `401` and a body as below.
+>If you send in a username that does not match one in the database, the endpoint will return an HTTP response with a status code `401` and a body as below.
 ```
 {
     "message": "Wrong credentials"
