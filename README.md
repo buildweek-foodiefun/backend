@@ -1,5 +1,5 @@
 # Overview
-This repository holds all back-end files and resources for the pintereach application. This repository was made during Lambda School's build week where students from different cohorts joined together to create a functioning application in a week. This project consists of 2 UI engineers, 2 Front End engineers, 1 Back End, and a team lead.
+This repository holds all backend files for the FoodieFun application. You can find it deployed [here](https://foodiefun-api.herokuapp.com/api/).
 
 ## API URL
 
