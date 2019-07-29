@@ -28,6 +28,28 @@ describe('Register endpoint', () => {
     expect(user.username).toBeDefined();
     expect(response.status).toBe(201);
   });
+
+  it('should return a 400 status if no username or no password is sent', async () => {
+    let response = await request(server)
+      .post('/register')
+      .send({ username: 'test' });
+    expect(response.status).toBe(400);
+    response = await request(server)
+      .post('/register')
+      .send({ password: 'password' });
+    expect(response.status).toBe(400);
+  });
+
+  it('should return a 422 status if no username or no password is sent', async () => {
+    let response = await request(server)
+      .post('/register')
+      .send({ username: 'test', password: 'password' });
+    expect(response.status).toBe(201);
+    response = await request(server)
+      .post('/register')
+      .send({ username: 'test', password: 'password' });
+    expect(response.status).toBe(422);
+  });
 });
 
 describe('Login endpoint', () => {
@@ -38,6 +60,25 @@ describe('Login endpoint', () => {
     const response = await request(server)
       .post('/login')
       .send({ username: 'test', password: 'password' });
+    expect(response.status).toBe(200);
     expect(response.body.token.length).toBeGreaterThan(0);
+  });
+
+  it('should return a 400 status code if there is a missing required field', async () => {
+    let response = await request(server)
+      .post('/login')
+      .send({ username: 'test' });
+    expect(response.status).toBe(400);
+    response = await request(server)
+      .post('/login')
+      .send({ password: 'password' });
+    expect(response.status).toBe(400);
+  });
+
+  it('should return a 401 status code if there is no a matching combination of username and password in the database', async () => {
+    const response = await request(server)
+      .post('/login')
+      .send({ username: 'whatever_account', password: 'password' });
+    expect(response.status).toBe(401);
   });
 });
