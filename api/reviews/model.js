@@ -1,7 +1,9 @@
 const db = require('../../data/dbconf');
 
 exports.find = id => {
-  return db('reviews').where({ id }).first();
+  return db('reviews')
+    .where({ id })
+    .first();
 };
 
 exports.findByUserId = userId => {
@@ -13,5 +15,13 @@ exports.add = reviewObject => {
 };
 
 exports.delete = id => {
-  return db('reviews').del().where({ id });
-}
+  return db('reviews')
+    .del()
+    .where({ id });
+};
+
+exports.update = reviewObject => {
+  return db('reviews')
+    .update(reviewObject)
+    .where({ id: reviewObject.id });
+};

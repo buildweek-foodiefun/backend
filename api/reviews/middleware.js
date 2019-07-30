@@ -23,7 +23,8 @@ exports.validateBodyReview = (req, res, next) => {
       photoUrl,
       comments,
       restaurantInfo,
-      userId: req.user.id
+      userId: req.user.id,
+      id: req.params.id ? Number(req.params.id) : undefined
     };
     req.review = review;
     next();
@@ -36,8 +37,9 @@ exports.validateReviewIdForUser = async (req, res, next) => {
   try {
     const reviewId = Number(req.params.id);
     const user = req.user;
-    const review = await Review.find(reviewId);
+    let review = await Review.find(reviewId);
     if (review && user.id === review.userId) {
+      review.id = reviewId;
       // eslint-disable-next-line require-atomic-updates
       req.review = review;
       next();
@@ -45,9 +47,6 @@ exports.validateReviewIdForUser = async (req, res, next) => {
       res.status(401).json({ message: 'Wrong credentials' });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'There was an error with your request' });
-
+    res.status(500).json({ message: 'There was an error with your request' });
   }
 };

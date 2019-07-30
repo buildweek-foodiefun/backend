@@ -26,9 +26,16 @@ exports.delete = async (req, res) => {
     await Review.delete(req.review.id);
     res.json({ message: 'Review deleted', review: req.review });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'There was an error with your request' });
-
+    res.status(500).json({ message: 'There was an error with your request' });
   }
-}
+};
+
+exports.update = async (req, res) => {
+  try {
+    await Review.update(req.review);
+    const updatedReview = await Review.find(req.review.id);
+    res.json(updatedReview);
+  } catch (error) {
+    res.status(500).json({ message: 'There was an error with your request' });
+  }
+};
