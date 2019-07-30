@@ -8,8 +8,8 @@ const server = express();
 server.use(express.json());
 server.use(router);
 
-beforeEach(async () => {
-  await db('users').truncate();
+beforeAll(async () => {
+  await db.migrate.rollback();
   await db.migrate.latest();
 });
 
@@ -40,12 +40,8 @@ describe('Register endpoint', () => {
     expect(response.status).toBe(400);
   });
 
-  it('should return a 422 status if no username or no password is sent', async () => {
+  it('should return a 422 status if the username already exists', async () => {
     let response = await request(server)
-      .post('/register')
-      .send({ username: 'test', password: 'password' });
-    expect(response.status).toBe(201);
-    response = await request(server)
       .post('/register')
       .send({ username: 'test', password: 'password' });
     expect(response.status).toBe(422);
