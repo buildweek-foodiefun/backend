@@ -10,6 +10,11 @@ const server = express();
 server.use(express.json());
 server.use(router);
 
+beforeAll(async () => {
+  await db.migrate.rollback();
+  await db.migrate.latest();
+});
+
 afterAll(async () => {
   await db.destroy();
 });
