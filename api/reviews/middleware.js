@@ -2,27 +2,27 @@ const Review = require('./model');
 
 exports.validateBodyReview = (req, res, next) => {
   const {
-    itemName,
-    foodType,
+    menuItem,
+    restaurantType,
     comments,
-    rating,
-    photo,
-    photoUrl,
-    date,
+    foodRating,
+    photoOfOrder,
+    dateOfVisit,
     restaurantName,
-    restaurantInfo
+    price,
+    waitTime
   } = req.body;
-  if (itemName && foodType && rating && date && restaurantName) {
+  if (menuItem && restaurantType && foodRating && dateOfVisit && restaurantName && price && waitTime) {
     const review = {
-      itemName,
-      foodType,
-      rating,
-      date,
+      menuItem,
+      restaurantType,
+      foodRating,
+      dateOfVisit,
       restaurantName,
-      photo,
-      photoUrl,
+      photoOfOrder,
       comments,
-      restaurantInfo,
+      waitTime,
+      price,
       userId: req.user.id,
       id: req.params.id ? Number(req.params.id) : undefined
     };

@@ -1,20 +1,20 @@
 exports.up = function(knex) {
   return knex.schema.createTable('reviews', table => {
     table.increments();
-    table.integer('userId').unsigned();
+    table.integer('userId').unsigned().notNullable();
     table
       .foreign('userId')
       .references('id')
       .inTable('users');
-    table.string('itemName').notNullable();
-    table.string('foodType').notNullable();
+    table.string('menuItem').notNullable();
+    table.string('restaurantType').notNullable();
     table.text('comments');
-    table.integer('rating').notNullable();
-    table.binary('photo');
-    table.string('photoUrl');
-    table.date('date').notNullable();
+    table.integer('foodRating').notNullable();
+    table.integer('waitTime').notNullable();
+    table.integer('price').notNullable();
+    table.string('photoOfOrder');
+    table.date('dateOfVisit').notNullable();
     table.string('restaurantName').notNullable();
-    table.text('restaurantInfo');
   });
 };
 

@@ -8,15 +8,17 @@ exports.seed = function(knex) {
         {
           id: 1,
           userId: 1,
-          itemName: 'Honest Burger',
-          foodType: 'Burgers',
-          comments: 'Ask for the double upgrade!',
-          rating: 5,
-          photoUrl:
-            'https://glutenfreecuppatea.co.uk/wp-content/uploads/2015/05/IMG_0469-1-1024x1024.jpg',
-          date: '2019-06-24',
-          restaurantName: 'Honest Burgers',
-          restaurantInfo: '4A Meard St, Soho, London W1F 0EF, UK'
+          restaurantName: 'Escorpion',
+          restaurantType: 'Mexican',
+          menuItem: 'Carne Asada Tacos',
+          comments:
+            'The meat was a little dry and service was slow, but tasted good overall!',
+          waitTime: 30,
+          photoOfOrder:
+            'https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg',
+          price: 6.40,
+          foodRating: 4,
+          dateOfVisit: '2019-05-06'
         }
       ]);
     });

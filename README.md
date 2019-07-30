@@ -159,7 +159,7 @@ To test the repository:
 # REVIEWS ROUTES
 
 ## **GET ALL**
-## Returns all user reviews 
+## Returns all user reviews
 
 *Method URL* `https://foodiefun-api.herokuapp.com/api/reviews`
 *HTTP method:* **[GET]**
@@ -176,40 +176,29 @@ To test the repository:
 ##### 200 (OK)
 >If you successfully return the reviews for the user, the endpoint will return an HTTP response with a status code `200` and a body as below.
 
-*example* 
+*example*
 
 ```
 [
     {
         "id": 1,
         "userId": 1,
-        "itemName": "Honest Burger",
-        "foodType": "Burgers",
-        "comments": "Ask for the double upgrade!",
-        "rating": 5,
-        "photoUrl": "https://glutenfreecuppatea.co.uk/wp-content/uploads/2015/05/IMG_0469-1-1024x1024.jpg",
-        "date": "2019-06-24",
-        "restaurantName": "Honest Burgers",
-        "restaurantInfo": "4A Meard St, Soho, London W1F 0EF, UK"
-    },
-    {
-        "id": 2,
-        "userId": 1,
-        "itemName": "Updated Item Name",
-        "foodType": "Test",
-        "comments": "This is a test",
-        "rating": 3,
-        "photoUrl": "www.google.com/test.jpg",
-        "date": "2019-05-21",
-        "restaurantName": "Test Restaurant",
-        "restaurantInfo": "Test Street 123, Test City"
+        "menuItem": "Carne Asada Tacos",
+        "restaurantType": "Mexican",
+        "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+        "foodRating": 4,
+        "waitTime": 30,
+        "price": 6.4,
+        "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+        "dateOfVisit": "2019-05-06",
+        "restaurantName": "Escorpion"
     }
 ]
 ```
 
 
 #### 401 (Unauthorized)
->If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows: 
+>If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows:
 
 ```
 "message": "You are not authorized to perform that operation"
@@ -232,30 +221,32 @@ To test the repository:
 | `Content-Type` | String | Yes | Must be application/json |
 | `Authorization`| String | Yes       | JWT authorization token |
 
-#### Body 
+#### Body
 
 | name     | type   | required | description              |
 | ---------| ------ | -------- | ------------------------ |
-| `itemName`  | String | Yes       |  
-| `foodType`  | String | Yes       |  
-| `comments`  | String | No       |  
-| `rating`  | integer | Yes       |  
-| `photoUrl`  | String | No       |  
-| `date`  | String | Yes       |  Format: YYYY-MM-DD
-| `restaurantName`  | String | Yes       |  
-| `restaurantInfo`  | String | No       |  
+| `menuItem`  | String | Yes       |
+| `restaurantType`  | String | Yes       |
+| `comments`  | String | No       |
+| `foodRating`  | integer | Yes       |
+| `waitingTime`  | integer | Yes       |
+| `price`  | integer | Yes       |
+| `photoOfOrder`  | String | No       |
+| `dateOfVisit`  | String | Yes       |  Format: `YYYY-MM-DD`
+| `restaurantName`  | String | Yes       |
 
 *example:*
 ```
 {
-	"itemName": "Test",
-	"foodType": "Test",
-	"comments": "This is a test",
-	"rating": 3,
-	"photoUrl": "www.google.com/test.jpg",
-	"date": "2019-05-21",
-	"restaurantName": "Test Restaurant",
-	"restaurantInfo": "Test Street 123, Test City"
+    "menuItem": "Carne Asada Tacos",
+    "restaurantType": "Mexican",
+    "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+    "foodRating": 4,
+    "waitTime": 30,
+    "price": 6.4,
+    "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+    "dateOfVisit": "2019-05-06",
+    "restaurantName": "Escorpion"
 }
 ```
 
@@ -264,18 +255,18 @@ To test the repository:
 ##### 201 (OK)
 >If you successfully createa board, the endpoint will return an HTTP response with a status code `201` and a body as below.
 
-*example* 
+*example*
 
 ```
 {
     "id": 4,
     "userId": 1,
-    "itemName": "Test",
-    "foodType": "Test",
+    "menuItem": "Test",
+    "restaurantType": "Test",
     "comments": "This is a test",
-    "rating": 3,
-    "photoUrl": "www.google.com/test.jpg",
-    "date": "2019-05-21",
+    "foodRating": 3,
+    "photoOfOrder": "www.google.com/test.jpg",
+    "dateOfVisit": "2019-05-21",
     "restaurantName": "Test Restaurant",
     "restaurantInfo": "Test Street 123, Test City"
 }
@@ -290,9 +281,8 @@ To test the repository:
 
 
 #### 401 (Unauthorized)
->If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows: 
+>If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows:
 
 ```
 { "message": "You are not authorized to perform that operation" }
 ```
-
