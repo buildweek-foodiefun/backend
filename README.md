@@ -154,3 +154,145 @@ To test the repository:
 }
 ```
 ----
+
+
+# REVIEWS ROUTES
+
+## **GET ALL**
+## Returns all user reviews 
+
+*Method URL* `https://foodiefun-api.herokuapp.com/api/reviews`
+*HTTP method:* **[GET]**
+
+### Headers
+
+| name | type   | required | description |
+| ----- | ------ | -------- | ----- |
+| `Content-Type` | String | Yes | Must be application/json |
+| `Authorization`| String | Yes       | JWT authorization token |
+
+#### Response
+
+##### 200 (OK)
+>If you successfully return the reviews for the user, the endpoint will return an HTTP response with a status code `200` and a body as below.
+
+*example* 
+
+```
+[
+    {
+        "id": 1,
+        "userId": 1,
+        "itemName": "Honest Burger",
+        "foodType": "Burgers",
+        "comments": "Ask for the double upgrade!",
+        "rating": 5,
+        "photoUrl": "https://glutenfreecuppatea.co.uk/wp-content/uploads/2015/05/IMG_0469-1-1024x1024.jpg",
+        "date": "2019-06-24",
+        "restaurantName": "Honest Burgers",
+        "restaurantInfo": "4A Meard St, Soho, London W1F 0EF, UK"
+    },
+    {
+        "id": 2,
+        "userId": 1,
+        "itemName": "Updated Item Name",
+        "foodType": "Test",
+        "comments": "This is a test",
+        "rating": 3,
+        "photoUrl": "www.google.com/test.jpg",
+        "date": "2019-05-21",
+        "restaurantName": "Test Restaurant",
+        "restaurantInfo": "Test Street 123, Test City"
+    }
+]
+```
+
+
+#### 401 (Unauthorized)
+>If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows: 
+
+```
+"message": "You are not authorized to perform that operation"
+```
+
+---
+
+---
+## **ADD REVIEW**
+## Add a review for the user
+
+
+*Method URL* `https://foodiefun-api.herokuapp.com/api/reviews`
+*HTTP method:* **[POST]**
+
+### Headers
+
+| name | type   | required | description |
+| ----- | ------ | -------- | ----- |
+| `Content-Type` | String | Yes | Must be application/json |
+| `Authorization`| String | Yes       | JWT authorization token |
+
+#### Body 
+
+| name     | type   | required | description              |
+| ---------| ------ | -------- | ------------------------ |
+| `itemName`  | String | Yes       |  
+| `foodType`  | String | Yes       |  
+| `comments`  | String | No       |  
+| `rating`  | integer | Yes       |  
+| `photoUrl`  | String | No       |  
+| `date`  | String | Yes       |  Format: YYYY-MM-DD
+| `restaurantName`  | String | Yes       |  
+| `restaurantInfo`  | String | No       |  
+
+*example:*
+```
+{
+	"itemName": "Test",
+	"foodType": "Test",
+	"comments": "This is a test",
+	"rating": 3,
+	"photoUrl": "www.google.com/test.jpg",
+	"date": "2019-05-21",
+	"restaurantName": "Test Restaurant",
+	"restaurantInfo": "Test Street 123, Test City"
+}
+```
+
+#### Response
+
+##### 201 (OK)
+>If you successfully createa board, the endpoint will return an HTTP response with a status code `201` and a body as below.
+
+*example* 
+
+```
+{
+    "id": 4,
+    "userId": 1,
+    "itemName": "Test",
+    "foodType": "Test",
+    "comments": "This is a test",
+    "rating": 3,
+    "photoUrl": "www.google.com/test.jpg",
+    "date": "2019-05-21",
+    "restaurantName": "Test Restaurant",
+    "restaurantInfo": "Test Street 123, Test City"
+}
+```
+
+#### 400 (incomplete request)
+>If your request has insufficient required fields, the endpoint will return code `400` and a body as follows:
+
+```
+{ "message": "Missing required parameter" }
+```
+
+
+#### 401 (Unauthorized)
+>If you are not logged in or your session has expired, the endpoint will return code `500` and a body as follows: 
+
+```
+{ "message": "You are not authorized to perform that operation" }
+```
+

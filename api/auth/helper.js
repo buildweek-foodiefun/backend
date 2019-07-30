@@ -18,6 +18,10 @@ exports.generateToken = username => {
   return token;
 };
 
+exports.validateToken = token => {
+  return jwt.verify(token, secret);
+};
+
 exports.identifyUserPassword = (password, hashedPassword) => {
   return bcrypt.compareSync(password, hashedPassword);
 };
