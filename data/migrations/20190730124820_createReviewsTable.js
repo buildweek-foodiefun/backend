@@ -11,7 +11,7 @@ exports.up = function(knex) {
     table.text('comments');
     table.integer('foodRating').notNullable();
     table.integer('waitTime').notNullable();
-    table.integer('price').notNullable();
+    table.float('price').notNullable();
     table.string('photoOfOrder');
     table.date('dateOfVisit').notNullable();
     table.string('restaurantName').notNullable();
