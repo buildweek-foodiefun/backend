@@ -11,5 +11,10 @@ router.post(
   [authMiddleware.restricted, reviewMiddleware.validateBodyReview],
   controller.post
 );
+router.delete(
+  '/:id',
+  [authMiddleware.restricted, reviewMiddleware.validateReviewIdForUser],
+  controller.delete
+);
 
 module.exports = router;

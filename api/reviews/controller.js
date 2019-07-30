@@ -20,3 +20,15 @@ exports.post = async (req, res) => {
     res.status(500).json({ message: 'There was an error with your request' });
   }
 };
+
+exports.delete = async (req, res) => {
+  try {
+    await Review.delete(req.review.id);
+    res.json({ message: 'Review deleted', review: req.review });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'There was an error with your request' });
+
+  }
+}
