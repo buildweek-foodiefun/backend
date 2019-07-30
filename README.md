@@ -156,7 +156,7 @@ To test the repository:
 ----
 
 
-#REVIEWS ROUTES
+# REVIEWS ROUTES
 
 ## **GET ALL**
 ## Returns all user reviews 
