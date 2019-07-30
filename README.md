@@ -230,7 +230,7 @@ To test the repository:
 | `comments`  | String | No       |
 | `foodRating`  | integer | Yes       |
 | `waitingTime`  | integer | Yes       |
-| `price`  | integer | Yes       |
+| `price`  | float | Yes       |
 | `photoOfOrder`  | String | No       |
 | `dateOfVisit`  | String | Yes       |  Format: `YYYY-MM-DD`
 | `restaurantName`  | String | Yes       |
@@ -259,16 +259,17 @@ To test the repository:
 
 ```
 {
-    "id": 4,
+    "id": 3,
     "userId": 1,
-    "menuItem": "Test",
-    "restaurantType": "Test",
-    "comments": "This is a test",
-    "foodRating": 3,
-    "photoOfOrder": "www.google.com/test.jpg",
-    "dateOfVisit": "2019-05-21",
-    "restaurantName": "Test Restaurant",
-    "restaurantInfo": "Test Street 123, Test City"
+    "menuItem": "Carne Asada Tacos",
+    "restaurantType": "Mexican",
+    "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+    "foodRating": 4,
+    "waitTime": 30,
+    "price": 6.4,
+    "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+    "dateOfVisit": "2019-05-06",
+    "restaurantName": "Escorpion"
 }
 ```
 
