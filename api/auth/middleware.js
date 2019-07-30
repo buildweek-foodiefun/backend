@@ -46,14 +46,14 @@ exports.checkBodyForLogin = async (req, res, next) => {
 exports.restricted = async (req, res, next) => {
   try {
     const token = req.get('Authorization');
-    const payload = helper.validateToken(token);
-    if (token && payload) {
+    if (token) {
+      const payload = helper.validateToken(token);
       // eslint-disable-next-line require-atomic-updates
       req.user = await Users.findByUsername(payload.username);
       next();
     } else {
       res.status(401).json({
-        message: 'You are not authorized to perform that operation '
+        message: 'You are not authorized to perform that operation'
       });
     }
   } catch (error) {
