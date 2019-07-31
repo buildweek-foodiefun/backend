@@ -5,7 +5,7 @@ const controller = require('./controller');
 
 const router = express.Router();
 
-router.get('/', authMiddleware.restricted, controller.find);
+router.get('/', [authMiddleware.restricted, reviewMiddleware.parseFilters], controller.find);
 
 router.post(
   '/',

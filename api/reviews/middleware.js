@@ -50,3 +50,16 @@ exports.validateReviewIdForUser = async (req, res, next) => {
     res.status(500).json({ message: 'There was an error with your request' });
   }
 };
+
+exports.parseFilters = (req, res, next) => {
+  let filter = req.query;
+  if (filter.price) {
+    filter.price = Number(filter.price);
+  } else if (filter.foodRating) {
+    filter.foodRating = Number(filter.foodRating);
+  } else if (filter.waitTime) {
+    filter.waitTime = Number(filter.waitTime);
+  }
+  req.filter = filter;
+  next();
+};
