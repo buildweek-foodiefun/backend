@@ -19,14 +19,18 @@ afterAll(async () => {
 
 describe('Register endpoint', () => {
   it('should register a user', async () => {
-    let user = await User.findByUsername('test');
-    expect(user).toBe(undefined);
-    const response = await request(server)
-      .post('/register')
-      .send({ username: 'test', password: 'password' });
-    user = await User.findByUsername('test');
-    expect(user.username).toBeDefined();
-    expect(response.status).toBe(201);
+    try {
+      let user = await User.findByUsername('test');
+      expect(user).toBe(undefined);
+      const response = await request(server)
+        .post('/register')
+        .send({ username: 'test', password: 'password' });
+      user = await User.findByUsername('test');
+      expect(response.status).toBe(201);
+      expect(user.username).toBeDefined();
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   it('should return a 400 status if no username or no password is sent', async () => {

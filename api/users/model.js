@@ -4,6 +4,6 @@ exports.findByUsername = username => {
   return db('users').where({ username }).first();
 };
 
-exports.insert = ({ username, password }) => {
+exports.add = ({ username, password }) => {
   return db('users').insert({ username, password });
 };

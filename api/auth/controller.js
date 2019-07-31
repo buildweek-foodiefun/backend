@@ -4,7 +4,7 @@ const Users = require('../users/model');
 exports.register = async (req, res) => {
   const { username, password } = req.body;
   try {
-    const response = await Users.insert({
+    const response = await Users.add({
       username,
       password: helper.generateHashedPassword(password)
     });
