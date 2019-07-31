@@ -204,9 +204,17 @@ To test the repository:
 "message": "You are not authorized to perform that operation"
 ```
 
----
+#### Using queries for filters
 
----
+You can pass filters as queries in the request using the name of the data fields
+
+*example:*
+*Method URL* `https://foodiefun-api.herokuapp.com/api/reviews?foodType=Burgers`
+*HTTP method:* **[GET]**
+
+Will return all the created reviews by the user with the `foodType` as `Burgers`.
+
+----
 ## **ADD REVIEW**
 ## Add a review for the user
 
@@ -286,4 +294,136 @@ To test the repository:
 
 ```
 { "message": "You are not authorized to perform that operation" }
+```
+
+----
+## **DELETE REVIEW**
+### Deletes review with specific id.
+
+*Method Url:* `https://foodiefun-api.herokuapp.com/api/reviews/:reviewId`
+
+*HTTP method:* **[DELETE]**
+
+#### Headers
+
+| name           | type   | required | description                    |
+| -------------- | ------ | -------- | ------------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json       |
+| `Authorization`| String | Yes      | JWT authorization token |
+
+#### Parameters
+
+| name    | type   | required | description              |
+| --------| ------ | -------- | ------------------------ |
+| `boardId`| Int    | Yes      | Id of specific review |
+
+
+#### Response
+##### 200 (OK)
+>If the request if successful, the server will return an HTTP response with a status code `200` and body as follows:
+
+```
+{
+    "message": "Review deleted",
+    "review": {
+        "id": 1,
+        "userId": 1,
+        "menuItem": "Carne Asada Tacos",
+        "restaurantType": "Mexican",
+        "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+        "foodRating": 4,
+        "waitTime": 30,
+        "price": 6.4,
+        "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+        "dateOfVisit": "2019-05-06",
+        "restaurantName": "Escorpion"
+    }
+}
+  ```
+
+##### 401 (Unauthorized)
+>If you are not logged in or the review doesn't belong to the user, the endpoint will return the status code `401` and a body as follows
+```
+{
+    "message": "Wrong credentials"
+}
+```
+
+----
+## **UPDATE REVIEW**
+### Updates review with specific id.
+
+*Method Url:* `https://foodiefun-api.herokuapp.com/api/reviews/:reviewId`
+
+*HTTP method:* **[PUT]**
+
+#### Headers
+
+| name           | type   | required | description                    |
+| -------------- | ------ | -------- | ------------------------------ |
+| `Content-Type` | String | Yes      | Must be application/json       |
+| `Authorization`| String | Yes      | JWT authorization token |
+
+#### Parameters
+
+| name    | type   | required | description              |
+| --------| ------ | -------- | ------------------------ |
+| `boardId`| Int    | Yes      | Id of specific review |
+
+#### Body
+
+| name     | type   | required | description              |
+| ---------| ------ | -------- | ------------------------ |
+| `menuItem`  | String | Yes       |
+| `restaurantType`  | String | Yes       |
+| `comments`  | String | No       |
+| `foodRating`  | integer | Yes       |
+| `waitingTime`  | integer | Yes       |
+| `price`  | float | Yes       |
+| `photoOfOrder`  | String | No       |
+| `dateOfVisit`  | String | Yes       |  Format: `YYYY-MM-DD`
+| `restaurantName`  | String | Yes       |
+
+*example:*
+```
+{
+    "menuItem": "Updated Menu Item",
+    "restaurantType": "Mexican",
+    "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+    "foodRating": 4,
+    "waitTime": 30,
+    "price": 6.4,
+    "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+    "dateOfVisit": "2019-05-06",
+    "restaurantName": "Escorpion"
+}
+```
+
+
+#### Response
+##### 200 (OK)
+>If the request if successful, the server will return an HTTP response with a status code `200` and body as follows:
+
+```
+{
+    "id": 1,
+    "userId": 1,
+    "menuItem": "Updated Menu Item",
+    "restaurantType": "Mexican",
+    "comments": "The meat was a little dry and service was slow, but tasted good overall!",
+    "foodRating": 4,
+    "waitTime": 30,
+    "price": 6.4,
+    "photoOfOrder": "https://www.eatingonadime.com/wp-content/uploads/2018/05/easy-street-tacos.jpg",
+    "dateOfVisit": "2019-05-06",
+    "restaurantName": "Escorpion"
+}
+  ```
+
+##### 401 (Unauthorized)
+>If you are not logged in or the review doesn't belong to the user, the endpoint will return the status code `401` and a body as follows
+```
+{
+    "message": "Wrong credentials"
+}
 ```
