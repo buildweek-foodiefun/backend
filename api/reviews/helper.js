@@ -1,9 +1,13 @@
 exports.formatDateReview = review => {
-  if (review.dateOfVisit.includes('T')) {
-    let temp = review;
-    temp.dateOfVisit = review.dateOfVisit.split('T')[0];
+  console.log(typeof review.dateOfVisit);
+  if (typeof review.dateOfVisit !== "string") {
+    const jsonString = review.dateOfVisit.toJSON();
+    if (jsonString.includes('T')) {
+      let temp = review;
+      temp.dateOfVisit = jsonString.split('T')[0];
 
-    return temp;
+      return temp;
+    }
   }
 
   return review;
