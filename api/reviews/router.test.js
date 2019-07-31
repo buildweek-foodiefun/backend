@@ -51,6 +51,20 @@ describe('Reviews router', () => {
     const newReviews = await Review.findByUserId(userData.id);
     expect(newReviews.length).toBe(prevLength + 1);
   });
+  it('should edit a review', async () => {
+    const user = await User.findByUsername(userData.username);
+    let reviews = await Review.findByUserId(user.id);
+    let reviewToUpdate = reviews[0];
+    const updatedMenuItem = 'Updated menu item';
+    reviewToUpdate.menuItem = updatedMenuItem;
+    const response = await request(server)
+      .put(`/${reviewToUpdate.id}`)
+      .set('Authorization', await getToken())
+      .send(reviewToUpdate);
+    expect(response.status).toBe(200);
+    reviews = await Review.findByUserId(user.id);
+    expect(reviews[0].menuItem).toBe(updatedMenuItem);
+  });
 });
 
 let userData = {
