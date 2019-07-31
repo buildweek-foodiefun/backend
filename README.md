@@ -1,6 +1,15 @@
 # Overview
 This repository holds all backend files for the FoodieFun application. You can find it deployed [here](https://foodiefun-api.herokuapp.com/api/).
 
+## TECH USED
+- Node.js
+- Express
+- Helmet & Cors
+- Knex
+- SQLite3 (development)
+- MySQL (production)
+- Jest & Supertest
+
 ## API URL
 
 ## Installation
