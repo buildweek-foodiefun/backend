@@ -6,8 +6,15 @@ exports.find = id => {
     .first();
 };
 
-exports.findByUserId = userId => {
-  return db('reviews').where({ userId });
+exports.findByUserId = (userId, filter) => {
+  /* Use in case of greater of filter in numeric values
+  if (filter.price || filter.waitTime || filter.foodRating) {
+    return db('reviews')
+      .where({ userId })
+      .where(Object.keys(filter)[0], '>=', Object.values(filter)[0]);
+  }
+  */
+  return db('reviews').where({ userId, ...filter });
 };
 
 exports.add = reviewObject => {
