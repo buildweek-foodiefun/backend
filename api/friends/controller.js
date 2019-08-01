@@ -1,6 +1,11 @@
 const User = require('../users/model');
 const Friend = require('./model');
 
+exports.getFriends = async (req, res) => {
+  const friends = await Friend.findReciprocalFriendsForId(req.user.id);
+  res.json(friends);
+};
+
 exports.addFriend = async (req, res) => {
   const invitedUsername = req.params.username;
   try {
