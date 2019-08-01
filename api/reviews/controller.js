@@ -1,4 +1,5 @@
 const Review = require('./model');
+const Friend = require('../friends/model');
 const helper = require('./helper');
 
 exports.find = async (req, res) => {
@@ -6,6 +7,26 @@ exports.find = async (req, res) => {
   try {
     const filter = req.filter;
     let reviews = await Review.findByUserId(user.id, filter);
+    for (let i = 0; i < reviews.length; i++) {
+      reviews[i] = helper.formatDateReview(reviews[i]);
+    }
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ message: 'There was an error with your request' });
+  }
+};
+
+exports.findWithFriends = async (req, res) => {
+  const user = req.user;
+  try {
+    const filter = req.filter;
+    let reviews = [];
+    const friends = await Friend.findReciprocalFriendsForId(user.id);
+    const idsToCheck = [user.id, ...friends];
+    for (let id of idsToCheck) {
+      reviews = [...reviews, ...(await Review.findByUserId(id, filter))];
+    }
+
     for (let i = 0; i < reviews.length; i++) {
       reviews[i] = helper.formatDateReview(reviews[i]);
     }

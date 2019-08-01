@@ -4,7 +4,7 @@ const controller = require('./controller');
 
 const router = express.Router();
 
-router.post('/', authMiddleware.restricted, controller.getFriends);
+router.get('/', authMiddleware.restricted, controller.getFriends);
 
 router.post(
   '/add/:username',

@@ -7,6 +7,12 @@ const router = express.Router();
 
 router.get('/', [authMiddleware.restricted, reviewMiddleware.parseFilters], controller.find);
 
+router.get(
+  '/friends',
+  [authMiddleware.restricted, reviewMiddleware.parseFilters],
+  controller.findWithFriends
+);
+
 router.post(
   '/',
   [authMiddleware.restricted, reviewMiddleware.validateBodyReview],
