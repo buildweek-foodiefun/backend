@@ -17,6 +17,7 @@ exports.up = function(knex) {
       .foreign('receiver')
       .references('id')
       .inTable('users');
+    table.unique(['requester', 'receiver']);
   });
 };
 
