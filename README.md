@@ -73,8 +73,8 @@ To test the repository:
 
 ```
 {
-  username: "admin",
-  password: "password",
+  "username": "admin",
+  "password": "password",
 }
 ```
 
