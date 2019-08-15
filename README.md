@@ -32,6 +32,7 @@ To test the repository:
 ## Test Accounts
 
 ```username: admin ```
+
 ```password: password ```
 
 
@@ -40,9 +41,9 @@ To test the repository:
 `users`
 ```
 {
-  "id": 1,                            // Integer [Primary key]
-  "username": "admin",                // String [Required, Unique]
-  "password": "password",             // String [Required]
+  "id": 1,                             // Integer [Primary key]
+  "username": "admin",                 // String [Required, Unique]
+  "password": "password"               // String [Required]
 }
 ```
 
@@ -74,7 +75,7 @@ To test the repository:
 ```
 {
   "username": "admin",
-  "password": "password",
+  "password": "password"
 }
 ```
 
@@ -133,8 +134,8 @@ To test the repository:
 
 ```
 {
-  username: "admin",
-  password: "password"
+  "username": "admin",
+  "password": "password"
 }
 ```
 
@@ -178,7 +179,7 @@ To test the repository:
 | name | type   | required | description |
 | ----- | ------ | -------- | ----- |
 | `Content-Type` | String | Yes | Must be application/json |
-| `Authorization`| String | Yes       | JWT authorization token |
+| `Authorization`| String | Yes | JWT authorization token |
 
 #### Response
 
@@ -218,10 +219,10 @@ To test the repository:
 You can pass filters as queries in the request using the name of the data fields
 
 *example:*
-*Method URL* `https://foodiefun-api.herokuapp.com/api/reviews?foodType=Burgers`
+*Method URL* `https://foodiefun-api.herokuapp.com/api/reviews?restaurantType=Mexican`
 *HTTP method:* **[GET]**
 
-Will return all the created reviews by the user with the `foodType` as `Burgers`.
+Will return all the created reviews by the user with the `restaurantType` as `Mexican`.
 
 ----
 ## **ADD REVIEW**
@@ -324,7 +325,7 @@ Will return all the created reviews by the user with the `foodType` as `Burgers`
 
 | name    | type   | required | description              |
 | --------| ------ | -------- | ------------------------ |
-| `boardId`| Int    | Yes      | Id of specific review |
+| `reviewId`| Int    | Yes      | Id of specific review |
 
 
 #### Response
@@ -377,7 +378,7 @@ Will return all the created reviews by the user with the `foodType` as `Burgers`
 
 | name    | type   | required | description              |
 | --------| ------ | -------- | ------------------------ |
-| `boardId`| Int    | Yes      | Id of specific review |
+| `reviewId`| Int    | Yes      | Id of specific review |
 
 #### Body
 
